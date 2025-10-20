@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Strava Chat</title>
+
+    <!-- Load fonts and stylesheet -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+
+  <body>
+    <!-- Chat section -->
+    <div class="chat-pane">
+
+      <!-- Input bar with text, mic and send buttons -->
+      <form id="chat-form" class="composer">
+        <div class="input-wrap">
+
+          <!-- Text input field -->
+          <input id="message" name="message" type="text" placeholder="Ask for a route, e.g. “10 km loop in Uppsala”…" autocomplete="off" />
+
+          <!-- Voice input button -->
+          <button id="mic-btn" type="button" aria-label="Voice input">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 14a3 3 0 0 0 3-3V7a3 3 0 1 0-6 0v4a3 3 0 0 0 3 3Zm7-3a7 7 0 0 1-14 0M12 21v-3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <!-- Send button -->
+          <button id="send-btn" type="submit" aria-label="Send" disabled>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M13 5l7 7-7 7M4 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+        </div>
+      </form>
+
+      <!-- Chat output messages -->
+      <div id="output" class="chat-output"></div>
+
+      <!-- Example suggestion buttons -->
+      <div id="suggestions" class="suggestions" aria-label="Examples">
+        <button class="sugg" data-text="Give me one tip to improve endurance during marathon preparation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18h6M9 15a6 6 0 1 1 6 0v0M10 21h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Give me one tip to improve endurance during marathon preparation
+        </button>
+
+        <div class="row">
+          <button class="sugg top" data-text="Suggest a 10 km run in Uppsala">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 8c0 4-8 12-8 12S4 12 4 8a8 8 0 1 1 16 0Z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="2"/></svg>
+            Suggest a 10 km run in Uppsala
+          </button>
+
+          <button class="sugg" data-text="Generate a new 5 km route in Sundsvall">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Generate a new 5 km route in Sundsvall
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Map view -->
+    <iframe id="map-frame" src="/static/map.html"></iframe>
+
+    <!-- JS logic for chat and map interaction -->
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>
